@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<malloc.h>
+
+typedef struct list
+{
+    int m;
+    char n;
+    float o;
+    struct list *p;
+}list;
+
+int main()
+{
+   list *head=NULL;
+ //  list m,n,o;
+
+   head=(list *)malloc(sizeof(list));
+
+   if(head==NULL)
+   {
+       printf("Not enough memory");
+   }
+   else
+   {
+       head->m=1;
+       head->n='A';
+       head->o=2.5;
+       head->p=(list *)malloc(sizeof(list));
+   }
+
+   if(head==NULL)
+   {
+       printf("not enough memory");
+   }
+
+   else
+   {
+       (head->p)->m=2;
+       (head->p)->n='B';
+       (head->p)->o=3.5;
+       (head->p)->p=(list *)malloc(sizeof(list));
+   }
+   if(head==NULL)
+   {
+       printf("not enough memory");
+   }
+   else
+   {
+       ((head->p)->p)->m=3;
+       ((head->p)->p)->n='C';
+       ((head->p)->p)->o=3.88;
+       ((head->p)->p)->p=head;
+   }
+}

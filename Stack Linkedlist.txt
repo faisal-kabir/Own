@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+//creating structure
+struct Node
+{
+    char data;
+    struct Node *next;
+};
+
+//defining type as short
+typedef struct Node node;
+
+void push(node* stack, char c)
+{
+    //creating a new node
+    node * newNode = (node *) malloc(sizeof(node));
+    newNode-> data = c;
+    newNode-> next = NULL;
+
+    //insert node in the last. find the last node
+    while(stack -> next != NULL)
+    {
+         stack = stack -> next;
+    }
+    stack -> next = newNode;
+
+    printf("%c is pushed in the stack\n", c);
+
+}
+
+
+char pop(node * stack)
+{
+    //creating temporary node to hold the value
+    node * temp ;
+    char data = '#';
+
+    //check is stack is empty or not
+    if(stack->next == NULL)
+    {
+        printf("Underflow \n");
+        return data;
+    }
+
+    //insert node in the last. find the last node
+    while(stack -> next -> next != NULL)
+    {
+        stack = stack -> next;
+    }
+    data = stack -> next -> data;
+    temp = stack -> next;
+    stack -> next = NULL;
+    printf("%c is popped from the stack\n", data);
+    free(temp);
+
+    return temp;
+}
+
+void print_stack(node * stack)
+{
+    if (stack != NULL)
+    {
+        printf("%c \n", stack -> data);
+        print_stack(stack -> next);
+    }
+}
+int main()
+{
+    //creating header node
+    node * stack = (node *) malloc(sizeof(node));
+    stack-> next = NULL;
+
+    //push hdata into stack
+    push(stack, 'S');
+    push(stack, 'E');
+    push(stack, 'C');
+
+    print_stack(stack-> next);
+
+    pop(stack);
+    pop(stack);
+    pop(stack);
+    pop(stack);
+
+
+    return 0;
+}

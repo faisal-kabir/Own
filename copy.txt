@@ -1,0 +1,106 @@
+#include<stdio.h>
+#include<malloc.h>
+
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+} List;
+
+
+void insert_front(List** head, int value)
+{
+    List* node = (List*)malloc(sizeof(List));
+    node->data = value;
+    node->next = NULL;
+
+    node->next = *head;
+    *head = node;
+}
+
+void insert_End(List** head, int value)
+{
+    List* node =(List *)malloc(sizeof(List));
+    List *p = NULL;
+
+    node->data = value;
+    node->next = NULL;
+
+    if(*head == NULL)
+    {
+        *head = node;
+    }
+
+    else
+    {
+        p = *head;
+
+        while(p->next!=NULL)
+        {
+            p = p->next;
+        }
+        p->next = node;
+    }
+
+}
+
+
+void print_node(List* head)
+    {
+        if(head == NULL)
+            printf("List is Empty\n");
+        else
+        {
+
+            while(head!=NULL)
+            {
+                printf("%d -> ", head->data);
+                head = head->next;
+            }
+            printf("NULL");
+        }
+    }
+
+int main()
+{
+        List* head = NULL, *head1=NULL;
+        int num1,num2,i,value;
+
+        printf("\nEnter total number :  ");
+        scanf("%d", &num1);
+
+        for(i=0; i<num1; i++)
+        {
+            scanf("%d", &value);
+            insert_End(&head,value);
+        }
+
+        printf("\nEnter total number :  ");
+        scanf("%d", &num2);
+
+        for(i=0; i<num2; i++)
+        {
+            scanf("%d", &value);
+            insert_End(&head1,value);
+        }
+
+        List* p;
+        p=head1;
+
+        while(p!=NULL)
+        {
+            insert_End(&head,p->data);
+            p = p->next;
+        }
+
+        print_node(head);
+
+        return 0;
+
+}
+
+
+
+
+

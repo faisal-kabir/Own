@@ -1,0 +1,103 @@
+#include<stdio.h>
+struct name
+{
+    int a;
+    struct name *p;
+};
+typedef struct name ab;
+ab *start;
+int main()
+{
+    int i;
+    start = (ab*)malloc(sizeof(ab));
+    ab *pt=start;
+    for (i=0; i<5; i++)
+    {
+        pt->a=i+5;
+        pt->p=(ab*)malloc(sizeof(ab));
+        pt=pt->p;
+    }
+    pt->p=NULL;
+    printf("Print all value : \n");
+    print(start);
+
+    printf("Delete 6 value : \n");
+    delet_node(start,6);
+    print(start);
+
+    printf("Added a value 10 at first :\n");
+    add_first(10);
+    print(start);
+
+    printf("Added a value 12 at last :\n");
+    add_last(start,12);
+    print(start);
+
+    printf("Added 11 value after 8  at middle :\n");
+    add_middle(find_prev(start,8),11);
+    print(start);
+
+
+    return 0;
+}
+
+void print(ab *list)
+{
+    while(list->p!=NULL)
+    {
+        printf("%d\n",list->a);
+        list=list->p;
+    }
+}
+
+void delet_node(ab *list,int n)
+{
+    ab *node=find_prev(list,n);
+    ab *sto=node->p->p;
+    free(node->p);
+    node->p=sto;
+}
+
+int find_prev(ab *list,int n)
+{
+    while (list->p != NULL)
+    {
+        if(list->p->a==n)
+        {
+            return list;
+        }
+        list=list->p;
+    }
+}
+
+void add_first(int data)
+{
+    ab *newnode=(ab*)malloc(sizeof(ab));
+    newnode ->a = data;
+    if(start != NULL)
+    {
+        newnode->p=start;
+        start = newnode;
+    }
+}
+
+void add_last(ab *list,int data)
+{
+    ab *newnode=(ab*)malloc(sizeof(ab));
+    while (list->p != NULL)
+    {
+        list=list->p;
+    }
+    list ->a = data;
+    list->p=newnode;
+    newnode->p=NULL;
+}
+
+void add_middle(ab *list,int data)
+{
+    ab *newnode=(ab*)malloc(sizeof(ab));
+    ab *temp=list->p->p;
+    list->p->p=newnode;
+    newnode->a=data;
+    newnode->p=temp;
+}

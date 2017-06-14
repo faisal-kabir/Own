@@ -1,0 +1,101 @@
+#include<stdio.h>
+#include<malloc.h>
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+} list;
+
+
+void delete_list(list **head,int value)
+{
+    list *p;
+    list *q;
+    p=*head;
+
+    if((*head)->data==value)
+    {
+        p=*head;
+
+        *head=(*head)->next;
+        free(p);
+    }
+    else
+    {
+        while(p->next !=NULL)
+        {
+            if(p->data==value)
+            {
+                q->next=p->next;
+                free(p);
+            }
+            else
+            {
+                q=p;
+                p=p->next;
+            }
+        }
+    }
+}
+
+
+void insert_end(list **head,int value)
+{
+    list *node=(list *)malloc(sizeof(list));
+
+    node->data=value;
+    node->next=NULL;
+
+    if(*head==NULL)
+    {
+        *head=node;
+    }
+    else
+    {
+        list *p=*head;
+        while(p->next !=NULL)
+        {
+            p=p->next;
+        }
+        p->next=node;
+    }
+
+}
+void print(list *head)
+{
+    if(head==NULL)
+    {
+        printf("List is empty");
+    }
+    else
+    {
+        while(head != NULL)
+        {
+            printf("%d -> ",head->data);
+            head=head->next;
+        }
+        printf("NULL\n");
+
+    }
+
+}
+
+int main()
+{
+    list *head=NULL;
+
+    insert_end(&head,1);
+    insert_end(&head,2);
+    insert_end(&head,3);
+    insert_end(&head,4);
+
+    print(head);
+
+    delete_list(&head,2);
+
+    print(head);
+
+    return 0;
+}
+

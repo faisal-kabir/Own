@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct tree
+{
+    int data;
+    struct tree *L;
+    struct tree *R;
+};
+typedef struct tree tr;
+tr *root;
+
+int main()
+{
+    insert(&root,1);
+    insert(&root,2);
+    insert(&root,4);
+    insert(&root,5);
+    insert(&root,3);
+    //insert(&root,2);
+    printf("Inorder :");
+    print_in(root);
+    printf("\nPreorder :");
+    print_pre(root);
+    printf("\nPostorder :");
+    print_post(root);
+    printf("\n");
+    return 0;
+}
+
+void insert (tr **temp,int a)
+{
+    if((*temp)==NULL)
+    {
+        tr *node=(tr*)malloc (sizeof(tr));
+        node->data=a;
+        node->L=NULL;
+        node->R=NULL;
+        *temp=node;
+    }
+    else if (a>(*temp)->data)
+    {
+        insert(&(*temp)->R,a);
+    }
+    else if (a<(*temp)->data)
+    {
+        insert(&(*temp)->L,a);
+    }
+}
+
+void print_in(tr *temp)
+{
+    if(temp!=NULL)
+    {
+        print_in(temp->L);
+        printf("%d ",temp->data);
+        print_in(temp->R);
+    }
+}
+void print_pre(tr *temp)
+{
+    if(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        print_in(temp->L);
+        print_in(temp->R);
+    }
+}
+void print_post(tr *temp)
+{
+    if(temp!=NULL)
+    {
+        print_in(temp->L);
+        print_in(temp->R);
+        printf("%d ",temp->data);
+    }
+}

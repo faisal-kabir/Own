@@ -1,0 +1,9 @@
+#include <stdio.h>
+int main()
+{
+  static int n=1;
+
+  printf("%3d ", n) && (n++<100) && main();
+
+  return 0;
+}

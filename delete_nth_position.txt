@@ -1,0 +1,107 @@
+#include<stdio.h>
+#include<malloc.h>
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+}list;
+
+void delete_nth(list **head)
+{
+
+    list *temp1=(list *)malloc(sizeof(list));
+
+
+    int n,i;
+
+    printf("Enter postion to delete node : ");
+    scanf("%d",&n);
+
+    if(n==1)
+    {
+        *head=temp1->next;
+        free(temp1);
+
+
+    }
+    else
+    {
+
+        for(i=1;i<=n-2;i++)
+        {
+            temp1=temp1->next;
+        }
+        list *temp2=temp1->next;
+        temp1->next=temp2->next;
+        free(temp2);
+
+
+    }
+}
+
+
+void insert_end(list **head,int value)
+ {
+     list *node=(list *)malloc(sizeof(list));
+
+     node->data=value;
+     node->next=NULL;
+     if(*head==NULL)
+     {
+         *head=node;
+     }
+     else
+     {
+         list *p=*head;
+         while(p->next !=NULL)
+         {
+             p=p->next;
+         }
+         p->next=node;
+     }
+ }
+
+void print(list *head)
+{
+    if(head==NULL)
+    {
+        printf("List is empty\n");
+    }
+    else
+    {
+        while(head !=NULL)
+        {
+            printf("%d -> ",head->data);
+            head=head->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int main()
+{
+    list *head=NULL;
+    int i,n,value;
+
+    printf("Enter total number : ");
+    scanf("%d",&n);
+
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&value);
+        insert_end(&head,value);
+    }
+
+    printf("\n\nList is : ");
+    print(head);
+
+    printf("\n\n");
+
+    delete_nth(&head);
+
+    print(head);
+
+    return 0;
+}
+

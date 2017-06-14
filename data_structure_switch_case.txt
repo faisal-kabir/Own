@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+    char ch;
+
+    while(1)
+    {
+        printf("Enter 1,2,3,E,e: \n");
+        ch=getche();
+
+        switch(ch)
+        {
+        case '1' :
+                    printf("\nA+ =4.00\n");
+                    break;
+        case '2' :
+                    printf("\nA =3.75\n");
+                    break;
+        case '3' :
+                    printf("\nA- =3.50\n");
+                    break;
+        case 'E' :
+        case 'e' :
+                    exit(0);
+
+        default :
+                    printf("\nPlease enter 1,2,3\n");
+        }
+    }
+    return 0;
+}

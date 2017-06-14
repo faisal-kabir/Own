@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void array_increasing(int *ar,int n)
+{
+    int i,j,temp;
+
+    for(i=0; i<n-1; i++)
+    {
+        for(j=i+1; j<n; j++)
+        {
+            if(ar[i]<ar[j])
+            {
+                temp=ar[i];
+                ar[i]=ar[j];
+                ar[j]=temp;
+            }
+
+        }
+    }
+    for(i=0; i<n; i++)
+    {
+        printf("%d\t",ar[i]);
+    }
+    printf("\n");
+}
+
+void decreasing_array(int *ar,int n)
+{
+    int i,j,temp;
+
+    for(i=0; i<n-1; i++)
+    {
+        for(j=i+1; j<n; j++)
+        {
+            if(ar[i]>ar[j])
+            {
+                temp=ar[i];
+                ar[i]=ar[j];
+                ar[j]=temp;
+            }
+        }
+    }
+    for(i=0; i<n; i++)
+    {
+        printf("%d\t",ar[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int *ar=NULL;
+    int i,n;
+
+    printf("Enter array size : ");
+    scanf("%d",&n);
+
+    ar=(int *)malloc(n*sizeof(int));
+
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",&ar[i]);
+    }
+
+    array_increasing(ar,n);
+    decreasing_array(ar,n);
+
+    return 0;
+
+}

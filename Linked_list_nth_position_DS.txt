@@ -1,0 +1,112 @@
+#include<stdio.h>
+#include<malloc.h>
+
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+} list;
+
+void nth_position(list **head)
+{
+
+    int i,n;
+    list *node=(list *)malloc(sizeof(list));
+
+    printf("Enter data : ");
+    scanf("%d",&node->data);
+
+    printf("Enter position : ");
+    scanf("%d",&n);
+
+    if(n==1)
+    {
+        node->next=*head;
+        *head=node;
+    }
+    else
+    {
+        list *p=*head;
+        for(i=1; i<n-1; i++)
+        {
+            p=p->next;
+        }
+        node->next=p->next;
+        p->next=node;
+    }
+}
+
+void insert_end(list **head,int value)
+{
+    list *node=(list *)malloc(sizeof(list));
+    list *p;
+
+    node->data=value;
+    node->next=NULL;
+    if(*head==NULL)
+    {
+        *head=node;
+    }
+    else
+    {
+        p=*head;
+
+        while(p->next !=NULL)
+        {
+            p=p->next;
+        }
+        p->next=node;
+    }
+}
+
+void print(list *head)
+{
+    if(head==NULL)
+    {
+        printf("List is Empty");
+    }
+    else
+    {
+        while(head !=NULL)
+        {
+            printf("%d -> ",head->data);
+            head=head->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int main()
+{
+    list *head1=NULL;
+    list *head2=NULL;
+
+    int i,n,value;
+    char ch;
+
+    printf("Enter total number : ");
+    scanf("%d",&n);
+
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",&value);
+        insert_end(&head1,value);
+    }
+
+    print(head1);
+
+    do
+    {
+        nth_position(&head1);
+        print(head1);
+        printf("Do you want to insert another node  or if you want quit the program then Enter 'e': ");
+        ch=getche();
+
+
+    }while(ch !='e');
+
+    return 0;
+
+
+}

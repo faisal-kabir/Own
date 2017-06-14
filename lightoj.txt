@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int a,n,i,front=0,t=0;
+    char stack[101][101];
+    char ch[10];
+    char b[]="BACK",f[]="FORWARD",v[]="VISIT",q[]="QUIT";
+    scanf("%d",&n);
+    for(i=1; i<=n; i++)
+    {
+        printf("Case %d:\n",i);
+        front=0;
+        t=0;
+        strcpy(stack[t],"http://www.lightoj.com/");
+        while(scanf("%s",&ch)==1)
+        {
+            if (strcmp(ch,q)==0)
+                break;
+            else if (strcmp(ch,v)==0)
+            {
+                getchar();
+                t++;
+                gets(stack[t]);
+                puts(stack[t]);
+            }
+            else if (strcmp(ch,b)==0)
+            {
+                t--;
+                if (t==-1)
+                {
+                    printf("Ignored\n");
+                    t++;
+                }
+                else
+                puts(stack[t]);
+            }
+            else if (strcmp(ch,f)==0)
+            {
+                t++;
+                if (stack[t][0]==NULL)
+                {
+                    printf("Ignored\n");
+                    t--;
+                }
+                else
+                  puts(stack[t]);
+            }
+        }
+    }
+    return 0;
+}

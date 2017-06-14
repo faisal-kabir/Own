@@ -1,0 +1,99 @@
+#include<stdio.h>
+#include<malloc.h>
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+} list;
+
+void insert_end(list **head,int value)
+{
+    list *node=(list *)malloc(sizeof(list));
+    list *p;
+
+    node->data=value;
+    node->next=NULL;
+
+    if(*head==NULL)
+    {
+        *head=node;
+    }
+    else
+    {
+        p=*head;
+        while(p->next !=NULL)
+        {
+            p=p->next;
+        }
+        p->next=node;
+    }
+}
+
+void print(list *head)
+{
+    if(head==NULL)
+    {
+        printf("List is Empty\n");
+    }
+    else
+    {
+        while(head !=NULL)
+        {
+            printf("%d -> ",head->data);
+            head=head->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int odd_node(list *head)
+{
+    int odd_sum=0;
+    if(head==NULL)
+    {
+        printf("Empty list\n");
+
+    }
+    else
+    {
+
+        while(head !=NULL)
+        {
+            if(head->data/2 !=0)
+            {
+                odd_sum++;
+                head=head->next;
+            }
+        }
+    }
+
+    return odd_sum;
+
+}
+
+int main()
+{
+    list *head=NULL;
+
+
+    int i,n,value;
+
+    printf("Enter total number : ");
+    scanf("%d",&n);
+
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",&value);
+        insert_end(&head,value);
+    }
+    printf("List is : ");
+    print(head);
+
+    int count;
+
+    count=odd_node(head);
+
+    printf("total odd node : %d\n",count);
+    return 0;
+}

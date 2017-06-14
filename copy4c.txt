@@ -1,0 +1,82 @@
+
+#include<stdio.h>
+#include<malloc.h>
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+}list;
+
+void incresing_sorted(list **head,int value)
+{
+    list *node=(list *)malloc(sizeof(list));
+    list *p;
+
+    node->data=value;
+    node->next=NULL;
+
+    if(*head==NULL || ((*head)->data)>value)
+    {
+        node->next=*head;
+        *head=node;
+    }
+    else
+    {
+        p=*head;
+        while(p->next !=NULL)
+        {
+            if(p->data<value && (p->next)->data>value)
+            {
+                node->next=p->next;
+                p->next=node;
+                return;
+            }
+            else
+            {
+                p=p->next;
+            }
+        }
+
+        p->next=node;
+    }
+
+}
+
+void print(list *head)
+{
+    if(head==NULL)
+    {
+        printf("List is empty\n");
+    }
+    else
+    {
+        while(head !=NULL)
+        {
+            printf("%d -> ",head->data);
+            head=head->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int main()
+{
+    list *head=NULL;
+    int i,n,value;
+
+    printf("Enter total number : ");
+    scanf("%d",&n);
+
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&value);
+        incresing_sorted(&head,value);
+    }
+
+    printf("\n");
+
+    print(head);
+    return 0;
+}
+

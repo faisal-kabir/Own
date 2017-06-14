@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+    char name[10][10]= {"Black","Brown","Red","Orange","Yellow","Green","Blue","Voilet","Grey","White"};
+    char a[10],b[10],c[10],c4='%';
+    printf("Enter your Resistance 3 colours name : \n");
+    gets(a);
+    gets(b);
+    gets(c);
+    int count=0,count1=0,count2=0,d,i,j,e,f,c1=0,c2=0,c3=0;
+    double rcc,m,e_c;
+    d=strlen(a);
+    e=strlen(b);
+    f=strlen(c);
+    for ( i=0; i<10; i++)
+    {
+        count=0;
+        for ( j=0; j<10; j++)
+        {
+
+            if (a[j]==name[i][j])
+            {
+                if (d==count)
+                {
+                    c1=i;
+                    break;
+                }
+                  count ++;
+            }
+        }
+    }
+
+    for ( i=0; i<10; i++)
+    {
+        count1=0;
+        for ( j=0; j<10; j++)
+        {
+
+            if (b[j]==name[i][j])
+            {
+                if (e==count1)
+                {
+                    c2=i;
+                    break;
+                }
+                  count1 ++;
+            }
+        }
+    }
+    for ( i=0; i<10; i++)
+    {
+        count2=0;
+        for ( j=0; j<10; j++)
+        {
+
+            if (c[j]==name[i][j])
+            {
+                if (f==count2)
+                {
+                    c3=i;
+                    break;
+                }
+                 count2 ++;
+            }
+        }
+    }
+    printf("\nYour Resistance is : %d%dx10^%d\n",c1,c2,c3);
+    printf("\nEnter your Multimeter Rating : \n");
+    scanf("%lf",&m);
+    rcc=((c1*10)+c2)*pow(10,c3);
+    e_c=((rcc-m)*100)/rcc;
+    printf("\nError calculation is : %0.2lf %c\n",e_c,c4);
+    return 0;
+}
+
+
+
+Me huuu
+numb

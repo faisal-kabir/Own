@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<malloc.h>
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+}list;
+
+void insert_front(list **head,int value)
+{
+    list *node=(list *)malloc(sizeof(list));
+
+    node->data=value;
+    node->next=NULL;
+    node->next=*head;
+    *head=node;
+}
+
+void insert_end(list **head,int value)
+{
+    list *node=(list *)malloc(sizeof(list));
+    list *p;
+
+    node->data=value;
+    node->next=NULL;
+
+    if(*head==NULL)
+    {
+        *head=node;
+    }
+    else
+    {
+        p=*head;
+        while(p->next !=NULL)
+        {
+            p=p->next;
+        }
+        p->next=node;
+    }
+
+
+}
+
+void print(list *head)
+{
+    if(head==NULL)
+    {
+        printf("List is empty\n");
+    }
+    else
+    {
+        while(head !=NULL)
+        {
+            printf("%d -> ",head->data);
+            head=head->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int main()
+{
+    list *head1=NULL;
+    list *head2=NULL;
+    list *p;
+
+    int  i,n,value;
+
+    printf("Enter total number : ");
+    scanf("%d",&n);
+
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&value);
+        insert_end(&head1,value);
+    }
+    print(head1);
+
+    p=head1;
+    while(p !=NULL)
+    {
+        insert_front(&head2,p->data);
+        p=p->next;
+    }
+
+    print(head2);
+    return 0;
+}

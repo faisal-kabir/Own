@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<malloc.h>
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+} list;
+
+void insert_sorted(list **head,int num)
+{
+    list *p;
+    list *node=(list *)malloc(sizeof(list));
+    node->data=num;
+    node->next=NULL;
+
+    if(*head==NULL || ((*head)->data)>num)
+    {
+        node->next=*head;
+        *head=node;
+    }
+    else
+    {
+        p=*head;
+        while(p->next !=NULL)
+        {
+            if(p->data<num && (p->next)->data>num)
+            {
+                node->next=p->next;
+                p->next=node;
+                return;
+            }
+            else
+            {
+                p=p->next;
+            }
+        }
+        p->next=node;
+    }
+}
+
+void print(list *head)
+{
+    if(head==NULL)
+    {
+        printf("List is empty\n");
+    }
+    else
+    {
+        while(head !=NULL)
+        {
+            printf("%d -> ",head->data);
+            head=head->next;
+        }
+        printf("NULL\n");
+    }
+}
+
+int main()
+{
+    list *head=NULL;
+    int i,n,value;
+
+    printf("Enter total number : ");
+    scanf("%d",&n);
+
+    for(i=0; i<n; i++)
+    {
+        scanf("%d",&value);
+        insert_sorted(&head,value);
+    }
+
+    print(head);
+
+    return 0;
+}

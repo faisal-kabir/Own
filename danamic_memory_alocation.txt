@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+
+int main()
+{
+    int *str;
+
+
+    str=(char *)calloc(5,sizeof(char));
+    strcpy(str,"sobuj");
+    printf("%s\n",str);
+
+    str=(char *)realloc(str,10*sizeof(char));
+    printf("%s\n",str);
+    return 0;
+
+}

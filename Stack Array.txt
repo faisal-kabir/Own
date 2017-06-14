@@ -1,0 +1,61 @@
+#include<stdio.h>
+#define size 7
+
+int stack[size];
+int top = -1;
+
+void push(int n)
+{
+
+    if(top < size -1 )
+    {
+        top++;
+        stack[top] = n;
+        printf("%d is stored in stack [%d]\n\n", n, top);
+    }
+    else{
+        printf("Overflow\n");
+    }
+}
+
+
+int pop()
+{
+    if(top < 0)
+    {
+        printf("Underflow \n");
+        return -1;
+    }
+
+    printf("%d is popped top is: %d\n\n", stack[top], top);
+
+
+    return stack[top--];
+}
+
+
+int main()
+{
+    push(10);
+    push(40);
+    push(70);
+    push(100);
+    push(130);
+    push(170);
+    push(200);
+    push(210);
+    push(10000);
+
+printf("top === %d\n" , top);
+    pop();
+    pop();
+    pop();
+    pop();
+    pop();
+    pop();
+    pop();
+    pop();
+    pop();
+
+    return 0;
+}

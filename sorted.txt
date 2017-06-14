@@ -1,0 +1,71 @@
+#include<stdio.h>
+
+typedef struct list List;
+
+struct list
+{
+    int data;
+    List* next;
+};
+
+void pr(List* head)
+{
+    if(head == NULL)
+        printf("List is empty\n");
+    else
+    {
+        while(head!=NULL)
+        {
+            printf("%d ", head->data);
+            head = head->next;
+        }
+    }
+}
+
+void ins_sorted(List** head, int value)
+{
+    List* temp = NULL;
+    List* node = malloc(sizeof(List));
+
+    node->data = value;
+    node->next = NULL;
+
+    if(*head == NULL || (*head)->data >= value)
+    {
+        node->next = *head;
+        *head = node;
+    }
+
+    else
+    {
+        temp = *head;
+        while(temp->next!=NULL)
+        {
+            if(temp->next->data > value)
+            {
+                node->next = temp->next;
+                temp->next = node;
+                return;
+            }
+            else
+                temp = temp->next;
+        }
+        temp->next = node;
+    }
+
+}
+int main()
+{
+
+    List* head = NULL;
+
+    ins_sorted(&head, 20);
+    ins_sorted(&head, 1);
+    ins_sorted(&head, 2);
+    ins_sorted(&head, 10);
+    ins_sorted(&head, 1);
+
+    pr(head);
+
+    return 0;
+}

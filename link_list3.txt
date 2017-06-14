@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<malloc.h>
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+} list;
+
+insert_front(list **root,int value)
+{
+    list *node;
+
+    node=(list*)malloc(sizeof(list));
+
+    node->data=value;
+    node->next=*root;
+    *root=node;
+}
+
+insert_print(list *root)
+{
+    while(root!=NULL)
+    {
+        printf("%d\t",root->data);
+        root=root->next;
+    }
+}
+
+int main()
+{
+    list *head=NULL;
+
+    insert_front(&head,34);
+    insert_front(&head,78);
+    insert_front(&head,99);
+
+    insert_print(head);
+}

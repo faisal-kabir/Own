@@ -1,0 +1,89 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct record
+{
+    char name[20];
+    char id[20];
+    char section;
+    float cgpa;
+} ;
+
+typedef struct record student;
+
+void insert_record(student *s)
+{
+    printf("\nEnter name : ");
+    gets(s->name);
+
+    printf("\nEnter ID : ");
+    gets(s->id);
+
+    printf("\nEnter Section : ");
+    scanf("%c",&s->section);
+
+    printf("\nEnter CGPA : ");
+    scanf("%f",&s->cgpa);
+}
+
+void print_record(student s)
+{
+    printf("\nNAME: %s\n",s.name);
+    printf("\nID : %s\n",s.id);
+    printf("\nSection : %c\n",s.section);
+    printf("\nCGPA : %.2f\n",s.cgpa);
+
+}
+
+void search(student std[],int n)
+{
+    char ID[20];
+    fflush(stdin);
+
+    printf("Enter ID for searching : ");
+    gets(ID);
+
+    int i;
+
+    for(i=0; i<n; i++)
+    {
+        if(strcmp(std[i].id,ID)==0)
+        {
+            print_record(std[i]);
+            break;
+        }
+        else
+        {
+            printf("ID is not matching\n");
+            break;
+        }
+    }
+}
+
+int main()
+{
+    student *std=NULL;
+
+    int i,n;
+
+    printf("Enter student number : ");
+    scanf("%d",&n);
+
+    std=(student *)malloc(sizeof(student)*n);
+
+    for(i=0; i<n; i++)
+    {
+        fflush(stdin);
+        insert_record(&std[i]);
+    }
+
+    search(std,n);
+
+    free(std);
+
+    return 0;
+
+
+}
+

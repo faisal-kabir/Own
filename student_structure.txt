@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<malloc.h>
+
+struct student
+{
+    char name[20];
+    char id[20];
+    float cgpa;
+};
+
+typedef struct student student;
+
+void insert_record(student *st)
+{
+    printf("\nENTER NAME : ");
+    gets(st->name);
+
+    printf("\nENTER ID : ");
+    gets(st->id);
+
+    printf("\nENTER CGPA :");
+    scanf("%f",&st->cgpa);
+}
+
+void print_record(student p)
+{
+    printf("\nNAME :%s\n",p.name);
+    printf("\nID: %s\n",p.id);
+    printf("\nCGPA : %.2f\n",p.cgpa);
+}
+
+int main()
+{
+    student *p=NULL;
+    int i,n;
+
+    printf("Enter student number : ");
+    scanf("%d",&n);
+
+    p=(student *)malloc(n*sizeof(student));
+
+    for(i=0; i<n; i++)
+    {
+        fflush(stdin);
+        insert_record(&p[i]);
+    }
+    for(i=0; i<n; i++)
+    {
+        print_record(p[i]);
+    }
+
+    return 0;
+
+
+}

@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+}list;
+
+int main()
+{
+    list *head=NULL;
+
+    head=(list*)malloc(sizeof(list));
+
+    if(head==NULL)
+    {
+        printf("Not enough memory");
+    }
+    else
+    {
+        head->data=55;
+        head->next=(list *)malloc(sizeof(list));
+    }
+
+    if(head==NULL)
+    {
+        printf("not enough memory");
+    }
+    else
+    {
+        (head->next)->data=23;
+        (head->next)->next=head;
+    }
+
+    printf("%d ",head->data);
+    printf("%d ",((head->next)->data));
+
+    return 0;
+
+}

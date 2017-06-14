@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<malloc.h>
+
+typedef struct list
+{
+    int data;
+    struct list *prev,*next;
+}list;
+
+int main()
+{
+    list *head=NULL;
+    list *middel,*end;
+
+    head=(list *)malloc(sizeof(list));
+    middel=(list *)malloc(sizeof(list));
+    end=(list *)malloc(sizeof(list));
+
+    head->data=1;
+    head->prev=NULL;
+    head->next=middel;
+    middel->prev=head;
+    middel->data=2;
+    middel->next=end;
+    end->data=3;
+    end->prev=middel;
+    end->next=NULL;
+}
+
+

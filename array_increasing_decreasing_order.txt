@@ -1,0 +1,55 @@
+#include<stdio.h>
+
+int main()
+{
+    int size;
+    printf("Enter array size : ");
+    scanf("%d",&size);
+    int ar[size],i,j,temp;
+
+    for(i=0; i<size; i++)
+    {
+        scanf("%d",&ar[i]);
+    }
+
+    for(i=0; i<size-1; i++)
+    {
+        for(j=i+1; j<size; j++)
+        {
+            if(ar[i]<ar[j])
+            {
+                temp=ar[i];
+                ar[i]=ar[j];
+                ar[j]=temp;
+            }
+        }
+    }
+
+    for(i=0; i<size; i++)
+    {
+        printf("%d\t",ar[i]);
+    }
+
+    printf("\n");
+
+    for(i=0; i<size; i++)
+    {
+        for(j=i+1; j<size; j++)
+        {
+            if(ar[i]>ar[j])
+            {
+                temp=ar[i];
+                ar[i]=ar[j];
+                ar[j]=temp;
+            }
+        }
+    }
+
+    for(i=0; i<size; i++)
+    {
+        printf("%d\t",ar[i]);
+    }
+    printf("\n");
+
+    return 0;
+}

@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<malloc.h>
+
+typedef struct list List;
+
+struct list
+{
+    int data;
+    List* next;
+};
+
+void insert(List** root, int value)
+{
+    List* temp  = (List*)malloc(sizeof(List));
+
+    temp->data = value;
+    temp->next = *root;
+    *root = temp;
+    //tem
+}
+
+void print(List* head)
+{
+    while(head != NULL)
+    {
+        printf("%d\t",head->data);
+        head = head->next;
+    }
+}
+
+int main()
+{
+
+
+   // int main = 10;
+    List* head = NULL;
+
+    insert(&head,1);
+
+   // printf("---%d\n",head->data);
+
+    insert(&head,2);
+    insert(&head,3);
+
+
+   // printf("\n\t%d\t\n",head->data);
+
+    print(head);
+    return 0;
+}
+

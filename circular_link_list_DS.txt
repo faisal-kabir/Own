@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<malloc.h>
+
+
+typedef struct list
+{
+    int data;
+    struct list *next;
+}list;
+
+
+int main()
+{
+    list *head=NULL;
+
+    head=(list *)malloc(sizeof(list));
+
+    if(head==NULL)
+    {
+        printf("List is empty");
+    }
+    else
+    {
+        head->data=1;
+        head->next=(list *)malloc(sizeof(list));
+
+        if(head==NULL)
+        {
+            printf("List is empty");
+        }
+        else
+        {
+            (head->next)->data=2;
+            (head->next)->next=(list *)malloc(sizeof(list));
+
+            if(head==NULL)
+            {
+                printf("List is empty");
+            }
+            else
+            {
+                ((head->next)->next)->data=3;
+                ((head->next)->next)->next=head;
+            }
+        }
+    }
+}
